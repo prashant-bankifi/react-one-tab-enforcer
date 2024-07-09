@@ -1,7 +1,41 @@
 import React from "react";
 
-const DefaultOnlyOneTabComponent = () => (
-  <div>Sorry! You can only have this application opened in one tab</div>
+const cardStyle = {
+  border: "1px solid #ccc",
+  borderRadius: "8px",
+  padding: "20px",
+  boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+  maxWidth: "90%",
+  // textAlign: 'center',
+};
+
+const titleStyle = {
+  fontSize: "24px",
+  fontWeight: "bold",
+  marginBottom: "10px",
+};
+
+const subheadingStyle = {
+  fontSize: "18px",
+  color: "#555",
+};
+
+const containerStyle = {
+  height: "100vh",
+  margin: 0,
+  fontFamily: "Arial, sans-serif",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+};
+
+const DefaultOnlyOneTabComponent = (props) => (
+  <div style={containerStyle}>
+    <div style={cardStyle}>
+      <div style={titleStyle}>{props.appName ? props.appName : "OCM Application"}</div>
+      <div style={subheadingStyle}>Sorry! You can only have this application opened in one tab</div>
+    </div>
+  </div>
 );
 
 // eslint-disable-next-line import/prefer-default-export
@@ -21,7 +55,7 @@ export function withOneTabEnforcer({
           appName
         )
       ) {
-        return <OnlyOneTabComponent />;
+        return <OnlyOneTabComponent appName={appName}/>;
       } else {
         return <WrappedComponent {...props} />;
       }
